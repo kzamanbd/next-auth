@@ -3,6 +3,7 @@
 import ApplicationLogo from '@/app/components/shared/ApplicationLogo';
 import LoadingSpinner from '@/app/components/shared/LoadingSpinner';
 import OtherLoginOption from '@/app/components/shared/OtherLoginOption';
+import axios from 'axios';
 import Link from 'next/link';
 
 import { useState } from 'react';
@@ -15,12 +16,32 @@ export default function Register() {
 	const [confirmPassword, setConfirmPassword] = useState('');
 	const [registerError, setRegisterError] = useState('');
 	const [isLoading, setIsLoading] = useState(false);
+	const [successMessage, setSuccessMessage] = useState('');
 
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		if (password !== confirmPassword) {
 			alert('Password does not match');
 			return;
+		}
+
+		setIsLoading(true);
+		try {
+			const response = await axios.post('/api/register', {
+				name: fullName,
+				email: username,
+				password: password
+			});
+			setSuccessMessage(response.data.message);
+			setIsLoading(false);
+			// reset form
+			setFullName('');
+			setUsername('');
+			setPassword('');
+			setConfirmPassword('');
+		} catch (error) {
+			setRegisterError('Something went wrong');
+			setIsLoading(false);
 		}
 	};
 
@@ -43,6 +64,7 @@ export default function Register() {
 
 						<form className="mt-4" onSubmit={handleSubmit}>
 							{registerError && <div className="text-red-500 text-center">{registerError}</div>}
+							{successMessage && <div className="text-green-500 text-center">{successMessage}</div>}
 							<label className="block">
 								<span className="form-label">Name</span>
 								<input
@@ -104,7 +126,7 @@ export default function Register() {
 						</form>
 						<p className="dark--text mt-4">
 							Already have an account?
-							<Link href="/login" className="text-primary ml-2">
+							<Link href="/" className="text-primary ml-2">
 								Sign in here
 							</Link>
 						</p>

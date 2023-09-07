@@ -4,9 +4,13 @@ import ApplicationLogo from '@/app/components/shared/ApplicationLogo';
 import LoadingSpinner from '@/app/components/shared/LoadingSpinner';
 import OtherLoginOption from '@/app/components/shared/OtherLoginOption';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
+import { signIn } from 'next-auth/react';
+
 export default function Login() {
+	const router = useRouter();
 	const [username, setUsername] = useState('kzamanbn@gmail.com');
 	const [password, setPassword] = useState('password');
 	const [loginError, setLoginError] = useState('');
@@ -16,9 +20,22 @@ export default function Login() {
 		e.preventDefault();
 		console.log('login');
 		setIsLoading(true);
-		setTimeout(() => {
-			setIsLoading(false);
-		}, 2000);
+
+		const result = await signIn('credentials', {
+			redirect: false,
+			email: username,
+			password: password
+		});
+
+		if (result?.error) {
+			setLoginError(result.error);
+		} else {
+			setLoginError('');
+			router.push('/dashboard');
+		}
+
+		console.log(result);
+		setIsLoading(false);
 	};
 
 	return (
@@ -30,7 +47,7 @@ export default function Login() {
 							<span className="h-12 w-12">
 								<ApplicationLogo />
 							</span>
-							<span className="dark--text text-3xl font-semibold">RTK Chat</span>
+							<span className="dark--text text-3xl font-semibold">Next Auth</span>
 						</div>
 						<p className="text-xs text-center text-gray-600">
 							Please sign-in to your account and start the adventure

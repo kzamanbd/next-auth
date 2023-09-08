@@ -210,6 +210,13 @@
 	.chat-conversation-box {
 		@apply min-h-[400px] space-y-5 p-4 pb-[68px] sm:min-h-[300px] sm:pb-0;
 	}
+	.pre-auth {
+		@apply bg-gray-800 text-white p-3 my-3 rounded shadow overflow-x-auto;
+	}
+
+	.pre-auth span {
+		@apply text-green-400;
+	}
 }
 @tailwind utilities;
 .simplebar-scrollbar:before {

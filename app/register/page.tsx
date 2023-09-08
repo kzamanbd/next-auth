@@ -1,12 +1,16 @@
 'use client';
 
-import ApplicationLogo from '@/app/components/shared/ApplicationLogo';
-import LoadingSpinner from '@/app/components/shared/LoadingSpinner';
-import OtherLoginOption from '@/app/components/shared/OtherLoginOption';
+import ApplicationLogo from '@/components/shared/ApplicationLogo';
+import LoadingSpinner from '@/components/shared/LoadingSpinner';
+import OtherLoginOption from '@/components/shared/OtherLoginOption';
 import axios from 'axios';
 import Link from 'next/link';
 
 import { useState } from 'react';
+
+export const metadata = {
+	title: 'Register'
+};
 
 export default function Register() {
 	// local state

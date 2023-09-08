@@ -6,9 +6,12 @@ import CredentialsProvider from 'next-auth/providers/credentials';
 
 export const authOptions: NextAuthOptions = {
 	adapter: PrismaAdapter(prisma),
-
+	secret: process.env.NEXTAUTH_SECRET,
 	pages: {
 		signIn: '/'
+	},
+	session: {
+		strategy: 'jwt'
 	},
 	providers: [
 		CredentialsProvider({
@@ -27,6 +30,8 @@ export const authOptions: NextAuthOptions = {
 				const user = await prisma.user.findUnique({
 					where: { email: credentials?.email }
 				});
+
+				console.log(user);
 
 				if (!user) {
 					return null;

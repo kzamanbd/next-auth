@@ -1,37 +1,37 @@
-'use client';
+"use client";
 
-import ApplicationLogo from '@/components/shared/ApplicationLogo';
-import LoadingSpinner from '@/components/shared/LoadingSpinner';
-import OtherLoginOption from '@/components/shared/OtherLoginOption';
-import axios from 'axios';
-import Link from 'next/link';
+import ApplicationLogo from "@/components/shared/ApplicationLogo";
+import LoadingSpinner from "@/components/shared/LoadingSpinner";
+import OtherLoginOption from "@/components/shared/OtherLoginOption";
+import axios from "axios";
+import Link from "next/link";
 
-import { useState } from 'react';
+import { useState } from "react";
 
 export const metadata = {
-	title: 'Register'
+	title: "Register"
 };
 
 export default function Register() {
 	// local state
-	const [fullName, setFullName] = useState('');
-	const [username, setUsername] = useState('');
-	const [password, setPassword] = useState('');
-	const [confirmPassword, setConfirmPassword] = useState('');
-	const [registerError, setRegisterError] = useState('');
+	const [fullName, setFullName] = useState("");
+	const [username, setUsername] = useState("");
+	const [password, setPassword] = useState("");
+	const [confirmPassword, setConfirmPassword] = useState("");
+	const [registerError, setRegisterError] = useState("");
 	const [isLoading, setIsLoading] = useState(false);
-	const [successMessage, setSuccessMessage] = useState('');
+	const [successMessage, setSuccessMessage] = useState("");
 
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		if (password !== confirmPassword) {
-			alert('Password does not match');
+			alert("Password does not match");
 			return;
 		}
 
 		setIsLoading(true);
 		try {
-			const response = await axios.post('/api/register', {
+			const response = await axios.post("/api/register", {
 				name: fullName,
 				email: username,
 				password: password
@@ -39,12 +39,12 @@ export default function Register() {
 			setSuccessMessage(response.data.message);
 			setIsLoading(false);
 			// reset form
-			setFullName('');
-			setUsername('');
-			setPassword('');
-			setConfirmPassword('');
+			setFullName("");
+			setUsername("");
+			setPassword("");
+			setConfirmPassword("");
 		} catch (error) {
-			setRegisterError('Something went wrong');
+			setRegisterError("Something went wrong");
 			setIsLoading(false);
 		}
 	};
@@ -130,7 +130,7 @@ export default function Register() {
 						</form>
 						<p className="dark--text mt-4">
 							Already have an account?
-							<Link href="/" className="text-primary ml-2">
+							<Link href="/login" className="text-primary ml-2">
 								Sign in here
 							</Link>
 						</p>

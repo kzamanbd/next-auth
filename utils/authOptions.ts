@@ -1,24 +1,24 @@
-import prisma from '@/utils/prisma';
-import { PrismaAdapter } from '@next-auth/prisma-adapter';
-import bcrypt from 'bcrypt';
-import { NextAuthOptions } from 'next-auth';
-import CredentialsProvider from 'next-auth/providers/credentials';
+import prisma from "@/utils/prisma";
+import { PrismaAdapter } from "@next-auth/prisma-adapter";
+import bcrypt from "bcrypt";
+import { NextAuthOptions } from "next-auth";
+import CredentialsProvider from "next-auth/providers/credentials";
 
 export const authOptions: NextAuthOptions = {
 	adapter: PrismaAdapter(prisma),
 	secret: process.env.NEXTAUTH_SECRET,
 	pages: {
-		signIn: '/'
+		signIn: "/login"
 	},
 	session: {
-		strategy: 'jwt'
+		strategy: "jwt"
 	},
 	providers: [
 		CredentialsProvider({
-			name: 'Credentials',
+			name: "Credentials",
 			credentials: {
-				email: { label: 'Username', type: 'text', placeholder: 'example@gmail.com' },
-				password: { label: 'Password', type: 'password' }
+				email: { label: "Username", type: "text", placeholder: "example@gmail.com" },
+				password: { label: "Password", type: "password" }
 			},
 			async authorize(credentials) {
 				// Add logic here to look up the user from the credentials supplied
@@ -57,7 +57,7 @@ export const authOptions: NextAuthOptions = {
 	],
 	callbacks: {
 		session: ({ session, token }) => {
-			console.log('Session Callback', { session, token });
+			console.log("Session Callback", { session, token });
 			return {
 				...session,
 				user: {
@@ -67,7 +67,7 @@ export const authOptions: NextAuthOptions = {
 			};
 		},
 		jwt: ({ token, user }) => {
-			console.log('JWT Callback', { token, user });
+			console.log("JWT Callback", { token, user });
 			if (user) {
 				const userData = user as unknown as any;
 				return {

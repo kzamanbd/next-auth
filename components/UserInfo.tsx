@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { signOut, useSession } from 'next-auth/react';
+import { signOut, useSession } from "next-auth/react";
 
 const UserInfo = () => {
 	const { data: session } = useSession();

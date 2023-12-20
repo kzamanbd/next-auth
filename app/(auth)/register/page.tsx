@@ -8,9 +8,9 @@ import Link from "next/link";
 
 import { useState } from "react";
 
-export const metadata = {
-	title: "Register"
-};
+// export const metadata = {
+// 	title: "Register"
+// };
 
 export default function Register() {
 	// local state

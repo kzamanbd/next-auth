@@ -8,9 +8,9 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
-export const metadata = {
-	title: 'Login'
-};
+// export const metadata = {
+// 	title: 'Login'
+// };
 
 export default function Login() {
 	const router = useRouter();

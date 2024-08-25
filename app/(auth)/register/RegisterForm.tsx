@@ -3,38 +3,49 @@
 import ApplicationLogo from '@/components/shared/ApplicationLogo';
 import LoadingSpinner from '@/components/shared/LoadingSpinner';
 import OtherLoginOption from '@/components/shared/OtherLoginOption';
-import { signIn } from 'next-auth/react';
+import axios from 'axios';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
-const LoginForm = () => {
-    const router = useRouter();
-    const [username, setUsername] = useState('kzamanbn@gmail.com');
-    const [password, setPassword] = useState('password');
-    const [loginError, setLoginError] = useState('');
+// export const metadata = {
+// 	title: "Register"
+// };
+
+export const RegisterForm = () => {
+    // local state
+    const [fullName, setFullName] = useState('');
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+    const [registerError, setRegisterError] = useState('');
     const [isLoading, setIsLoading] = useState(false);
+    const [successMessage, setSuccessMessage] = useState('');
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log('login');
-        setIsLoading(true);
-
-        const result = await signIn('credentials', {
-            redirect: false,
-            email: username,
-            password: password
-        });
-
-        if (result?.error) {
-            setLoginError(result.error);
-        } else {
-            setLoginError('');
-            router.push('/dashboard');
+        if (password !== confirmPassword) {
+            alert('Password does not match');
+            return;
         }
 
-        console.log(result);
-        setIsLoading(false);
+        setIsLoading(true);
+        try {
+            const response = await axios.post('/api/register', {
+                name: fullName,
+                email: username,
+                password: password
+            });
+            setSuccessMessage(response.data.message);
+            setIsLoading(false);
+            // reset form
+            setFullName('');
+            setUsername('');
+            setPassword('');
+            setConfirmPassword('');
+        } catch (error) {
+            setRegisterError('Something went wrong');
+            setIsLoading(false);
+        }
     };
 
     return (
@@ -51,7 +62,6 @@ const LoginForm = () => {
                             </p>
                         </div>
                         <div className="my-3">
-                            <p className="dark--text mb-2 text-2xl font-semibold">Welcome to NextAuth</p>
                             <p className="text-xs text-gray-600">
                                 Please sign-in to your account and start the adventure
                             </p>
@@ -60,8 +70,22 @@ const LoginForm = () => {
                         <OtherLoginOption />
 
                         <form className="mt-4" onSubmit={handleSubmit}>
-                            {loginError && <div className="text-red-500 text-center">{loginError}</div>}
+                            {registerError && <div className="text-red-500 text-center">{registerError}</div>}
+                            {successMessage && <div className="text-green-500 text-center">{successMessage}</div>}
                             <label className="block">
+                                <span className="form-label">Name</span>
+                                <input
+                                    type="text"
+                                    name="fullName"
+                                    className="form-input"
+                                    placeholder="Name"
+                                    value={fullName}
+                                    required
+                                    onChange={(e) => setFullName(e.target.value)}
+                                />
+                            </label>
+
+                            <label className="block mt-3">
                                 <span className="form-label">Email</span>
                                 <input
                                     type="email"
@@ -87,30 +111,30 @@ const LoginForm = () => {
                                 />
                             </label>
 
-                            <div className="mt-4 flex items-center justify-between">
-                                <label className="inline-flex items-center">
-                                    <input type="checkbox" name="remember" className="form-checkbox" />
-                                    <span className="dark--text mx-2 text-sm">Remember me</span>
-                                </label>
-
-                                <a
-                                    className="block text-sm text-primary-600 hover:underline"
-                                    href="/auth-forgot-password.html">
-                                    Forgot your password?
-                                </a>
-                            </div>
+                            <label className="mt-3 block">
+                                <span className="form-label">Confirm Password</span>
+                                <input
+                                    type="password"
+                                    name="password"
+                                    className="form-input"
+                                    placeholder="********"
+                                    value={confirmPassword}
+                                    required
+                                    onChange={(e) => setConfirmPassword(e.target.value)}
+                                />
+                            </label>
 
                             <div className="mt-6">
                                 <button type="submit" className="btn btn-primary flex w-full" disabled={isLoading}>
-                                    <span className="mr-2">Login</span>
+                                    <span className="mr-2">Sign up</span>
                                     <LoadingSpinner isLoading={isLoading} />
                                 </button>
                             </div>
                         </form>
                         <p className="dark--text mt-4">
-                            Don’t have an account yet?
-                            <Link href="/register" className="text-primary ml-2">
-                                Sign up here
+                            Already have an account?
+                            <Link href="/login" className="text-primary ml-2">
+                                Sign in here
                             </Link>
                         </p>
                     </div>
@@ -120,4 +144,4 @@ const LoginForm = () => {
     );
 };
 
-export default LoginForm;
+export default RegisterForm;

@@ -38,19 +38,24 @@ export default function Login() {
     };
 
     return (
-        <div className="bg-light-gray dark:bg-dark-secondary dark:text-gray-300 lg:h-screen lg:overflow-hidden">
+        <div className="bg-light dark:bg-dark-700 dark:text-gray-300">
             <div className="flex min-h-screen items-center justify-center p-6">
                 <div className="login-bg">
-                    <div className="rounded-md bg-white p-8 shadow-md">
+                    <div className="rounded-md bg-white px-8 py-6 shadow-md">
                         <div className="my-4 flex items-center justify-center space-x-2">
                             <span className="h-12 w-12">
                                 <ApplicationLogo />
                             </span>
-                            <span className="dark--text text-3xl font-semibold">Next Auth</span>
+                            <p className="dark--text text-3xl font-semibold">
+                                Next <span className="text-primary">Auth</span>
+                            </p>
                         </div>
-                        <p className="text-xs text-center text-gray-600">
-                            Please sign-in to your account and start the adventure
-                        </p>
+                        <div className="my-3">
+                            <p className="dark--text mb-2 text-2xl font-semibold">Welcome to NextAuth</p>
+                            <p className="text-xs text-gray-600">
+                                Please sign-in to your account and start the adventure
+                            </p>
+                        </div>
 
                         <OtherLoginOption />
 

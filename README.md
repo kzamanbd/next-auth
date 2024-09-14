@@ -22,7 +22,7 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 ```bash
 npm run build
-pm2 start npm --name "next-auth" -- start -- --port 3000
+pm2 start npm --name \"next-auth\" --watch app -- start -- --port 3000
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.

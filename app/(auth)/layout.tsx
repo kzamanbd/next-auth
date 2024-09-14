@@ -10,7 +10,7 @@ const GuestLayout = async ({ children }: Props) => {
     const session = await getServerSession(authOptions);
 
     if (session) {
-        redirect('/dashboard');
+        return redirect('/dashboard');
     }
     return children;
 };

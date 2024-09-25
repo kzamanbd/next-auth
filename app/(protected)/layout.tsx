@@ -8,7 +8,7 @@ import Link from 'next/link';
 import { useState, PropsWithChildren, ReactNode } from 'react';
 import { signOut, useSession } from 'next-auth/react';
 
-const AuthenticatedLayout = ({ header, children }: PropsWithChildren<{ header?: ReactNode }>) => {
+const AuthenticatedLayout = ({ children }: { children: React.ReactNode }) => {
     const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
     const { data: session } = useSession();
 
@@ -121,11 +121,11 @@ const AuthenticatedLayout = ({ header, children }: PropsWithChildren<{ header?: 
                 </div>
             </nav>
 
-            {header && (
+            {/* {header && (
                 <header className="bg-white shadow">
                     <div className="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8">{header}</div>
                 </header>
-            )}
+            )} */}
 
             <main>{children}</main>
         </div>

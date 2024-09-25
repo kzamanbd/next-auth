@@ -7,7 +7,7 @@ export const config = {
 // More on how NextAuth.js middleware works: https://next-auth.js.org/configuration/nextjs#middleware
 export default withAuth({
     callbacks: {
-        authorized({ req, token }) {
+        authorized({ token }) {
             // Return true if the user is allowed to access the page
             return !!token;
         }

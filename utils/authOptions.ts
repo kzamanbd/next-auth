@@ -48,6 +48,7 @@ export const authOptions: NextAuthOptions = {
                     id: `${user.id}`,
                     name: user.name,
                     email: user.email,
+                    image: `https://ui-avatars.com/api/?name=${user.name}`,
                     username: user.username,
                     createdAt: user.createdAt,
                     updatedAt: user.updatedAt

@@ -8,7 +8,7 @@ import Link from 'next/link';
 import { useState, PropsWithChildren, ReactNode } from 'react';
 import { signOut, useSession } from 'next-auth/react';
 
-export default function Authenticated({ header, children }: PropsWithChildren<{ header?: ReactNode }>) {
+const AuthenticatedLayout = ({ header, children }: PropsWithChildren<{ header?: ReactNode }>) => {
     const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
     const { data: session } = useSession();
 
@@ -130,4 +130,6 @@ export default function Authenticated({ header, children }: PropsWithChildren<{ 
             <main>{children}</main>
         </div>
     );
-}
+};
+
+export default AuthenticatedLayout;

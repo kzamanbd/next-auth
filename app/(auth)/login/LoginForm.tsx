@@ -17,7 +17,6 @@ const LoginForm = () => {
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log('login');
         setIsLoading(true);
 
         const result = await signIn('credentials', {
@@ -27,7 +26,7 @@ const LoginForm = () => {
         });
 
         if (result?.error) {
-            setLoginError(result.error);
+            setLoginError('Invalid email or password');
         } else {
             setLoginError('');
             router.push('/dashboard');
@@ -46,12 +45,12 @@ const LoginForm = () => {
                             <span className="h-12 w-12">
                                 <ApplicationLogo />
                             </span>
-                            <p className="dark--text text-3xl font-semibold">
+                            <p className="text-default text-3xl font-semibold">
                                 Next <span className="text-primary">Auth</span>
                             </p>
                         </div>
                         <div className="my-3">
-                            <p className="dark--text mb-2 text-2xl font-semibold">Welcome to NextAuth</p>
+                            <p className="text-default mb-2 text-2xl font-semibold">Welcome to NextAuth</p>
                             <p className="text-xs text-gray-600">
                                 Please sign-in to your account and start the adventure
                             </p>
@@ -90,7 +89,7 @@ const LoginForm = () => {
                             <div className="mt-4 flex items-center justify-between">
                                 <label className="inline-flex items-center">
                                     <input type="checkbox" name="remember" className="form-checkbox" />
-                                    <span className="dark--text mx-2 text-sm">Remember me</span>
+                                    <span className="text-default mx-2 text-sm">Remember me</span>
                                 </label>
 
                                 <a
@@ -107,7 +106,7 @@ const LoginForm = () => {
                                 </button>
                             </div>
                         </form>
-                        <p className="dark--text mt-4">
+                        <p className="text-default mt-4">
                             Don’t have an account yet?
                             <Link href="/register" className="text-primary ml-2">
                                 Sign up here

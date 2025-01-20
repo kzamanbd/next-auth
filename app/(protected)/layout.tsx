@@ -35,7 +35,7 @@ const AuthenticatedLayout = ({ children }: { children: React.ReactNode }) => {
                                     Dashboard
                                 </NavLink>
 
-                                <NavLink href="{route('sites.index')}">Hosted Sites</NavLink>
+                                <NavLink href="/sites">Hosted Sites</NavLink>
                             </div>
                         </div>
 

@@ -31,14 +31,12 @@ export const authOptions: NextAuthOptions = {
                     where: { email: credentials?.email }
                 });
 
-                console.log(user);
-
                 if (!user) {
                     return null;
                 }
 
                 // compare password
-                const match = await bcrypt.compare(credentials.password, user.password);
+                const match = await bcrypt.compare(credentials.password, user.password!);
 
                 if (!match) {
                     return null;

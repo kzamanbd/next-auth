@@ -57,7 +57,7 @@ export const RegisterForm = () => {
                             <span className="h-12 w-12">
                                 <ApplicationLogo />
                             </span>
-                            <p className="dark--text text-3xl font-semibold">
+                            <p className="text-default text-3xl font-semibold">
                                 Next <span className="text-primary">Auth</span>
                             </p>
                         </div>
@@ -131,7 +131,7 @@ export const RegisterForm = () => {
                                 </button>
                             </div>
                         </form>
-                        <p className="dark--text mt-4">
+                        <p className="text-default mt-4">
                             Already have an account?
                             <Link href="/login" className="text-primary ml-2">
                                 Sign in here

@@ -2,7 +2,7 @@ export default function OtherLoginOption() {
     return (
         <>
             <div className="my-4 space-y-4 lg:flex lg:items-center lg:space-x-4 lg:space-y-0">
-                <button className="dark--text flex w-full items-center justify-center rounded-md border border-gray-200 bg-white p-2 text-sm hover:bg-gray-100 lg:w-1/2">
+                <button className="text-default flex w-full items-center justify-center rounded-md border border-gray-200 bg-white p-2 text-sm hover:bg-gray-100 lg:w-1/2">
                     <svg className="mr-2 h-5 w-5" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g clipPath="url(#clip0_13183_10121)">
                             <path
@@ -27,7 +27,7 @@ export default function OtherLoginOption() {
                     Sign in with Google
                 </button>
 
-                <button className="dark--text flex w-full items-center justify-center rounded-md border border-gray-200 bg-white p-2 text-sm hover:bg-gray-100 lg:w-1/2">
+                <button className="text-default flex w-full items-center justify-center rounded-md border border-gray-200 bg-white p-2 text-sm hover:bg-gray-100 lg:w-1/2">
                     <svg className="mr-2 h-5 w-5" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g clipPath="url(#clip0_13183_29163)">
                             <path

@@ -5,7 +5,7 @@ import type { Config } from 'tailwindcss';
 import colors from 'tailwindcss/colors';
 import defaultTheme from 'tailwindcss/defaultTheme';
 
-const primary = colors.green;
+const primary = colors.indigo;
 const colorConfig = {
     dark: {
         ...colors.slate,
@@ -18,7 +18,7 @@ const colorConfig = {
     light: '#F5F8FA',
     primary: {
         ...primary,
-        DEFAULT: '#00A76F'
+        DEFAULT: primary[500]
     },
     info: {
         ...colors.indigo,

@@ -10,7 +10,7 @@ const Home = async () => {
         return redirect('/dashboard');
     }
     return (
-        <div className="h-screen flex items-center justify-center">
+        <div className="h-screen flex items-center justify-center gap-4">
             <Link href="/login" className="btn btn-primary">
                 Login
             </Link>

@@ -1,19 +1,12 @@
-import aspectRatio from '@tailwindcss/aspect-ratio';
 import forms from '@tailwindcss/forms';
-import typography from '@tailwindcss/typography';
 import type { Config } from 'tailwindcss';
-import colors from 'tailwindcss/colors';
+import colors, { indigo as primary } from 'tailwindcss/colors';
 import defaultTheme from 'tailwindcss/defaultTheme';
 
-const primary = colors.indigo;
 const colorConfig = {
     dark: {
         ...colors.slate,
         DEFAULT: '#1F2937'
-    },
-    white: {
-        DEFAULT: '#FFFFFF',
-        light: '#E0E6ED'
     },
     light: '#F5F8FA',
     primary: {
@@ -60,6 +53,6 @@ const config: Config = {
             }
         }
     },
-    plugins: [forms, typography, aspectRatio]
+    plugins: [forms]
 };
 export default config;

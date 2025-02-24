@@ -38,8 +38,8 @@ export const RegisterForm = () => {
             setUsername('');
             setPassword('');
             setConfirmPassword('');
-        } catch (error) {
-            setRegisterError('Something went wrong');
+        } catch (error: any) {
+            setRegisterError(error.message);
             setIsLoading(false);
         }
     };

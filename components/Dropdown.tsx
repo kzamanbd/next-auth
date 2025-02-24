@@ -84,7 +84,6 @@ const Content = ({
 
 const DropdownLink = ({
     className = '',
-    as,
     children,
     ...props
 }: LinkProps & {

@@ -5,7 +5,7 @@ import Dropdown from '@/components/Dropdown';
 import NavLink from '@/components/NavLink';
 import ResponsiveNavLink from '@/components/ResponsiveNavLink';
 import Link from 'next/link';
-import { useState, PropsWithChildren, ReactNode } from 'react';
+import { useState } from 'react';
 import { signOut, useSession } from 'next-auth/react';
 
 const AuthenticatedLayout = ({ children }: { children: React.ReactNode }) => {

@@ -7,10 +7,6 @@ import axios from 'axios';
 import Link from 'next/link';
 import { useState } from 'react';
 
-// export const metadata = {
-// 	title: "Register"
-// };
-
 export const RegisterForm = () => {
     // local state
     const [fullName, setFullName] = useState('');

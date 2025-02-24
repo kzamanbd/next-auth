@@ -9,8 +9,6 @@ export const metadata = {
 const Dashboard = async () => {
     const session = await getServerSession(authOptions);
 
-    console.log(session);
-
     return (
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-4">
             <h3 className="text-xl font-bold">Authentication Overview</h3>

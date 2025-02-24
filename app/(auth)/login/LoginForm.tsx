@@ -32,7 +32,6 @@ const LoginForm = () => {
             router.push('/dashboard');
         }
 
-        console.log(result);
         setIsLoading(false);
     };
 

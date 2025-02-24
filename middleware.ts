@@ -2,15 +2,15 @@
 // https://next-auth.js.org/configuration/nextjs#middleware
 // https://nextjs.org/docs/app/building-your-application/routing/middleware
 
-import NextAuth from 'next-auth';
-import { authOptions } from './utils/authOptions';
+import { withAuth } from 'next-auth/middleware';
 
-const { auth } = NextAuth(authOptions);
-
-export default auth((req: any) => {
-    if (!req.auth) {
-        const url = req.url.replace(req.nextUrl.pathname, '/');
-        return Response.redirect(url);
+// More on how NextAuth.js middleware works: https://next-auth.js.org/configuration/nextjs#middleware
+export default withAuth({
+    callbacks: {
+        authorized({ token }) {
+            // Return true if the user is allowed to access the page
+            return !!token;
+        }
     }
 });
 
